@@ -22,7 +22,6 @@ public class ClientController {
 
     @PostMapping("/create")
     public ResponseEntity<ClientJson> createClient(@RequestBody ClientJson clientJson){
-
         ClientDto clientDto = clientService.createClient(clientMapper.toDto(clientJson));
         return new ResponseEntity<>(clientMapper.toJson(clientDto), HttpStatus.CREATED);
     }
