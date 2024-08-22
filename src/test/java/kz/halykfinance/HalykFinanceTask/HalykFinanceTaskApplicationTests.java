@@ -52,11 +52,20 @@ class HalykFinanceTaskApplicationTests {
 		clientDto.setMiddleName("Berikovich");
 		clientDto.setBirthDate(LocalDate.parse("1993-06-06"));
 
-		clientService.createClient(clientDto);
+		assertDoesNotThrow(() -> {
+			clientService.createClient(clientDto);
+		});
+
 		MessageDto messageDto = new MessageDto();
 		messageDto.setClientLogin("marlenmyrzakhanov@gmail.com");
 		messageDto.setBody("It is test message");
-		messageService.sendMessage(messageDto);
-		messageProcessScheduler.processMessages();
+
+		assertDoesNotThrow(() -> {
+			messageService.sendMessage(messageDto);
+		});
+
+		assertDoesNotThrow(() -> {
+			messageProcessScheduler.processMessages();
+		});
 	}
 }
